@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/events.css" />
+    <title>Районный Дом Культуры</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="menu_header">
+          <a href="./index.html" class="logo"
+            ><img src="./img/icon/logo.svg" alt=""
+          /></a>
+          <div class="menu_info">
+            <h1 class="title_logo">Районный Дом Культуры</h1>
+            <div class="adress_header">п.Новоорск</div>
+          </div>
+          <nav class="nav_header">
+            <ul>
+              <li><a href="./index.html" class="not--active-4">Главная</a></li>
+              <li>
+                <a href="./poster.html" class="active-2">Афиша мероприятий</a>
+              </li>
+              <li>
+                <a href="./teams.html" class="not--active-2"
+                  >Творческие коллективы</a
+                >
+              </li>
+              <li>
+                <a href="./contacts.html" class="not--active-3">Контакты</a>
+              </li>
+              <li>
+                <a href="./lc.html" id="profile-link" class="not--active-1"
+                  >Личный кабинет</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="section_poster--1">
+      <div class="container">
+        <div class="flex_poster--1">
+          <div class="info_poster--1">
+            <h1 class="title">Афиша событий</h1>
+            <p>
+              Здесь вы найдете все предстоящие мероприятия и собития на
+              территории РДК или на других площадках, проводимые коллективом
+              Дома культуры.
+            </p>
+          </div>
+          <div class="line"></div>
+          <div class="card_poster--1">
+            <img src="./img/picture/card_poster--1.png" alt="" />
+            <h1>Пушкинская карта</h1>
+            <a href="#">
+              <p>Подробнее</p>
+              <div class="arrow arrow-right"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_poster--2">
+      <div class="container">
+        <div class="events-container">
+          <!-- Здесь будут отображаться карточки событий -->
+        </div>
+      </div>
+    </section>
+
+    <div id="admin-create-event-block" style="display: none">
+      <button id="open-create-event-modal" class="admin-create-btn">
+        Создать событие
+      </button>
+    </div>
+
+    <!-- Модальное окно для создания события -->
+    <div id="create-event-modal" class="modal" style="display: none">
+      <div class="modal-content">
+        <span class="close-modal" id="close-create-event-modal">&times;</span>
+        <h2>Создать событие</h2>
+        <form id="create-event-form" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="event-title">Название</label>
+            <input type="text" id="event-title" name="title" required />
+          </div>
+          <div class="form-group">
+            <label for="event-date">Дата</label>
+            <input type="date" id="event-date" name="date" required />
+          </div>
+          <div class="form-group">
+            <label for="event-time">Время</label>
+            <input type="time" id="event-time" name="time" required />
+          </div>
+          <div class="form-group">
+            <label for="event-price">Цена</label>
+            <input
+              type="number"
+              id="event-price"
+              name="price"
+              min="0"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="event-description">Описание</label>
+            <textarea id="event-description" name="text" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="event-image">Изображение</label>
+            <input
+              type="file"
+              id="event-image"
+              name="image"
+              accept="image/*"
+              required
+            />
+          </div>
+          <button type="submit" class="admin-create-btn">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="menu_footer">
+          <a href="./index.html" class="logo"
+            ><img src="./img/icon/logo.svg" alt=""
+          /></a>
+          <div class="menu_info--footer">
+            <h1 class="title_logo">Районный Дом Культуры</h1>
+            <div class="adress_footer">п.Новоорск</div>
+          </div>
+          <nav class="nav_footer">
+            <ul>
+              <li><a href="./index.html" class="active">Главная</a></li>
+              <li>
+                <a href="./poster.html" class="not--active-1"
+                  >Афиша мероприятий</a
+                >
+              </li>
+              <li>
+                <a href="./teams.html" class="not--active-2"
+                  >Творческие коллективы</a
+                >
+              </li>
+              <li>
+                <a href="./contacts.html" class="not--active-3">Контакты</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="info_flex--footer">
+          <div class="social_footer">
+            <p>Мы в соцсетях:</p>
+            <div class="icons_footer">
+              <a href="#">
+                <div class="tg"></div>
+              </a>
+              <a href="#">
+                <div class="inst"></div>
+              </a>
+              <a href="#">
+                <div class="vk"></div>
+              </a>
+              <a href="#">
+                <div class="you"></div>
+              </a>
+            </div>
+          </div>
+          <div class="info_footer">
+            <a href="#" class="mail">info@uniletadvisor.com</a>
+            <p class="time">Часы работы: пн-пт 9:00 - 18:00</p>
+          </div>
+        </div>
+        <p class="bottom_footer">Copyright © 2017-2024 RDKnovoorsk.ru</p>
+      </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/events.js"></script>
+  </body>
+</html>

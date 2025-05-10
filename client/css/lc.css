@@ -1,0 +1,122 @@
+.tickets-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
+}
+
+.tickets-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.tickets-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.ticket-card {
+    background: #fff;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.ticket-card:hover {
+    transform: translateY(-5px);
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.ticket-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #333;
+    margin: 0;
+}
+
+.ticket-id {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #666;
+    background: #f5f5f5;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.ticket-info {
+    margin-bottom: 15px;
+}
+
+.ticket-info p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #666;
+    margin: 8px 0;
+}
+
+.ticket-info strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.ticket-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.ticket-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #333;
+}
+
+.ticket-status {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    background: #4CAF50;
+    color: white;
+}
+
+.ticket-status.used {
+    background: #9E9E9E;
+}
+
+.ticket-status.cancelled {
+    background: #F44336;
+}
+
+.no-tickets {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .tickets-container {
+        grid-template-columns: 1fr;
+    }
+} 

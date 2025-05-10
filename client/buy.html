@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/buy.css" />
+    <title>Покупка билета - Районный Дом Культуры</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="menu_header">
+          <a href="./index.html" class="logo"
+            ><img src="./img/icon/logo.svg" alt=""
+          /></a>
+          <div class="menu_info">
+            <h1 class="title_logo">Районный Дом Культуры</h1>
+            <div class="adress_header">п.Новоорск</div>
+          </div>
+          <nav class="nav_header">
+            <ul>
+              <li><a href="./index.html" class="not--active-4">Главная</a></li>
+              <li>
+                <a href="./poster.html" class="active-2">Афиша мероприятий</a>
+              </li>
+              <li>
+                <a href="./teams.html" class="not--active-2"
+                  >Творческие коллективы</a
+                >
+              </li>
+              <li>
+                <a href="./contacts.html" class="not--active-3">Контакты</a>
+              </li>
+              <li>
+                <a href="./lc.html" id="profile-link" class="not--active-1"
+                  >Личный кабинет</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="section_buy">
+      <div class="container">
+        <div class="buy_content">
+          <div class="event_info">
+            <h1 class="event_title">Загрузка информации о мероприятии...</h1>
+            <div class="event_image">
+              <img id="event-pic" src="" alt="Изображение мероприятия" />
+            </div>
+            <div class="event_details">
+              <p class="event_date">Дата: <span id="event-date">...</span></p>
+              <p class="event_time">Время: <span id="event-time">...</span></p>
+              <p class="event_price">Цена: <span id="event-price">...</span></p>
+            </div>
+            <div class="event_description">
+              <h2>Описание мероприятия</h2>
+              <p id="event-description">...</p>
+            </div>
+          </div>
+
+          <div class="ticket_form">
+            <h2>Покупка билета</h2>
+            <form id="ticket-form">
+              <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+              <div class="form-group">
+                <label for="quantity">Количество билетов</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  min="1"
+                  value="1"
+                  required
+                />
+              </div>
+
+              <h3>Данные карты</h3>
+              <div class="form-group">
+                <label for="card-number">Номер карты</label>
+                <input
+                  type="text"
+                  id="card-number"
+                  name="card-number"
+                  pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"
+                  maxlength="19"
+                  placeholder="XXXX XXXX XXXX XXXX"
+                  required
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="card-expiry">Срок действия</label>
+                  <input
+                    type="text"
+                    id="card-expiry"
+                    name="card-expiry"
+                    pattern="[0-9]{2}/[0-9]{2}"
+                    maxlength="5"
+                    placeholder="MM/YY"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="card-cvv">CVV</label>
+                  <input
+                    type="text"
+                    id="card-cvv"
+                    name="card-cvv"
+                    pattern="[0-9]{3}"
+                    maxlength="3"
+                    placeholder="XXX"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="card-holder">Имя владельца карты</label>
+                <input
+                  type="text"
+                  id="card-holder"
+                  name="card-holder"
+                  placeholder="IVAN IVANOV"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="buy-button">Купить билет</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="menu_footer">
+          <a href="./index.html" class="logo"
+            ><img src="./img/icon/logo.svg" alt=""
+          /></a>
+          <div class="menu_info--footer">
+            <h1 class="title_logo">Районный Дом Культуры</h1>
+            <div class="adress_footer">п.Новоорск</div>
+          </div>
+          <nav class="nav_footer">
+            <ul>
+              <li><a href="./index.html" class="not--active-4">Главная</a></li>
+              <li>
+                <a href="./poster.html" class="active-2">Афиша мероприятий</a>
+              </li>
+              <li>
+                <a href="./teams.html" class="not--active-2"
+                  >Творческие коллективы</a
+                >
+              </li>
+              <li>
+                <a href="./contacts.html" class="not--active-3">Контакты</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="info_flex--footer">
+          <div class="social_footer">
+            <p>Мы в соцсетях:</p>
+            <div class="icons_footer">
+              <a href="#">
+                <div class="tg"></div>
+              </a>
+              <a href="#">
+                <div class="inst"></div>
+              </a>
+              <a href="#">
+                <div class="vk"></div>
+              </a>
+              <a href="#">
+                <div class="you"></div>
+              </a>
+            </div>
+          </div>
+          <div class="info_footer">
+            <a href="#" class="mail">info@uniletadvisor.com</a>
+            <p class="time">Часы работы: пн-пт 9:00 - 18:00</p>
+          </div>
+        </div>
+        <p class="bottom_footer">Copyright © 2017-2024 RDKnovoorsk.ru</p>
+      </div>
+    </footer>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/buy.js"></script>
+  </body>
+</html>
