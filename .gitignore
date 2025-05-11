@@ -1,38 +1,7 @@
-# Node.js
-node_modules/
+server/node_modules
+server/package-lock.json
 
-# Логи
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+client/node_modules
+client/package-lock.json
 
-# dotenv
-.env
-.env.*
 
-# VSCode
-.vscode/
-
-# Mac
-.DS_Store
-
-# Windows
-Thumbs.db
-
-# uploads (загруженные изображения)
-uploads/
-
-# build artifacts
-/dist/
-/build/
-
-# Системные файлы
-*.swp
-*.swo
-
-# coverage
-coverage/
-
-# Бэкапы
-*.bak
-*.tmp 
