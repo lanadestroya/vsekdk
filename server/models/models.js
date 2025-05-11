@@ -2,7 +2,6 @@ const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 const Ticket = require('./Ticket')
 
-
 // Роли пользователей
 const Role = sequelize.define("role", {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -14,7 +13,7 @@ const User = sequelize.define("user", {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     login: { type: DataTypes.STRING, unique: true, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
-    roleName: {type: DataTypes.STRING, defaultValue: "USER"},
+    roleId: { type: DataTypes.INTEGER, allowNull: false },
 });
 
 // Привязка пользователя к роли

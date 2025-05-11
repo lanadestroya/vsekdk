@@ -1,9 +1,11 @@
-const { User } = require('../models/models');
+const { User, Role } = require('../models/models');
 
 module.exports = async (req, res, next) => {
     try {
-        const user = await User.findByPk(req.user.id);
-        if (!user || user.roleName !== 'ADMIN') {
+        const user = await User.findByPk(req.user.id, {
+            include: [Role]
+        });
+        if (!user || user.roleId !== 2) { // 2 - это id роли ADMIN
             return res.status(403).json({ message: 'Нет прав администратора' });
         }
         next();

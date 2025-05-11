@@ -37,11 +37,17 @@ app.get('/', (req, res) => {
 app.use(errorHandler)
 
 async function initRoles() {
+    console.log('Initializing roles...')
     const roles = ['USER', 'ADMIN']
     for (const roleName of roles) {
-        const [role, created] = await Role.findOrCreate({ where: { roleName } })
+        const [role, created] = await Role.findOrCreate({ 
+            where: { name: roleName },
+            defaults: { name: roleName }
+        })
         if (created) {
-            console.log(`Role ${roleName} created`)
+            console.log(`Role ${roleName} created with id: ${role.id}`)
+        } else {
+            console.log(`Role ${roleName} already exists with id: ${role.id}`)
         }
     }
 }
