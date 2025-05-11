@@ -115,6 +115,21 @@
     grid-column: 1 / -1;
 }
 
+.logout-button {
+    padding: 10px 20px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #ff0000;
+}
+
 @media (max-width: 768px) {
     .tickets-container {
         grid-template-columns: 1fr;

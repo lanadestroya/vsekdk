@@ -59,7 +59,7 @@ function showAdminCreateButton() {
     // Декодируем payload JWT (без проверки подписи)
     try {
         const payload = JSON.parse(atob(token.split('.')[1]));
-        if (payload.roleName === 'ADMIN') {
+        if (payload.roleId === 2) { // 2 - это id роли ADMIN
             document.getElementById('admin-create-event-block').style.display = 'block';
         }
     } catch (e) {
@@ -124,9 +124,21 @@ function setupCreateEventForm() {
     };
 }
 
+// Функция для выхода из системы
+function logout() {
+    localStorage.removeItem('token');
+    window.location.href = '/auth.html';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     displayEvents();
     showAdminCreateButton();
     setupCreateEventModal();
     setupCreateEventForm();
+    
+    // Добавляем обработчик для кнопки выхода
+    const logoutButton = document.getElementById('logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', logout);
+    }
 }); 

@@ -1,8 +1,20 @@
+// Функция для выхода из системы
+function logout() {
+    localStorage.removeItem('token');
+    window.location.href = 'auth.html';
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
     if (!token) {
         window.location.href = 'auth.html';
         return;
+    }
+
+    // Добавляем обработчик для кнопки выхода
+    const logoutButton = document.getElementById('logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', logout);
     }
 
     try {
