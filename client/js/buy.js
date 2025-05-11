@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // Загружаем информацию о мероприятии
-        const response = await fetch(`http://localhost:5000/api/event/${eventId}`);
+        const response = await fetch(`/api/event/${eventId}`);
         if (!response.ok) {
             throw new Error('Не удалось загрузить информацию о мероприятии');
         }
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Заполняем информацию о мероприятии
         document.querySelector('.event_title').textContent = event.title;
-        document.getElementById('event-pic').src = `http://localhost:5000/uploads/${event.pic}`;
+        document.getElementById('event-pic').src = `/uploads/${event.pic}`;
         document.getElementById('event-date').textContent = new Date(event.date).toLocaleDateString('ru-RU');
         document.getElementById('event-time').textContent = new Date(event.date).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         document.getElementById('event-price').textContent = `${event.price} руб.`;
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     return;
                 }
 
-                const response = await fetch('http://localhost:5000/api/ticket', {
+                const response = await fetch('/api/ticket', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

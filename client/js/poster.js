@@ -39,7 +39,7 @@ function createEventCard(event) {
     
     card.innerHTML = `
         <div class="event-image">
-            <img src="http://localhost:5000/uploads/${event.pic}" alt="${event.title}">
+            <img src="/uploads/${event.pic}" alt="${event.title}">
         </div>
         <div class="event-content">
             <div class="event-date">${formattedDate}</div>
@@ -59,7 +59,7 @@ function createEventCard(event) {
 async function loadEvents() {
     try {
         console.log('Начинаю загрузку событий...');
-        const response = await fetch('http://localhost:5000/api/event');
+        const response = await fetch('/api/event');
         console.log('Получен ответ от сервера:', response);
         
         if (!response.ok) {

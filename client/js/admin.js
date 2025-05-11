@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const response = await fetch('http://localhost:5000/api/auth/me', {
+        const response = await fetch('/api/auth/me', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         formData.append('image', document.getElementById('image').files[0]);
 
         try {
-            const response = await fetch('http://localhost:5000/api/event', {
+            const response = await fetch('/api/event', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Функция для загрузки списка мероприятий
 async function loadEvents() {
     try {
-        const response = await fetch('http://localhost:5000/api/event');
+        const response = await fetch('/api/event');
         const events = await response.json();
 
         const eventsContainer = document.getElementById('events-container');
@@ -122,7 +122,7 @@ async function deleteEvent(eventId) {
 
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/event/${eventId}`, {
+        const response = await fetch(`/api/event/${eventId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

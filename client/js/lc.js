@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // Загрузка информации о пользователе
-        const userResponse = await fetch('http://localhost:5000/api/user/', {
+        const userResponse = await fetch('/api/user/', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('user-email').textContent = userData.email;
 
         // Загрузка билетов пользователя
-        const ticketsResponse = await fetch('http://localhost:5000/api/ticket/user', {
+        const ticketsResponse = await fetch('/api/ticket/user', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Загрузка информации о мероприятиях для каждого билета
         const ticketsWithEvents = await Promise.all(tickets.map(async (ticket) => {
-            const eventResponse = await fetch(`http://localhost:5000/api/event/${ticket.eventId}`);
+            const eventResponse = await fetch(`/api/event/${ticket.eventId}`);
             if (!eventResponse.ok) {
                 throw new Error('Не удалось загрузить информацию о мероприятии');
             }

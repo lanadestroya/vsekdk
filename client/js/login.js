@@ -7,7 +7,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     };
 
     try {
-        const response = await fetch('http://localhost:5000/api/user/login', { // Отправляем запрос на сервер
+        const response = await fetch('/api/user/login', { // Отправляем запрос на сервер
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",

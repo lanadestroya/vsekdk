@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const profileLinkEl = document.querySelector('#profile-link')
     
     async function getUser(token) {
-        const res = await fetch(`http://localhost:5000/api/user`, {headers: {
+        const res = await fetch(`/api/user`, {headers: {
             Authorization: 'Bearer ' + token
         }})
         const data = await res.json()
