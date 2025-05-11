@@ -23,13 +23,13 @@ class UserController {
         if (candidate) {
             return next(ApiError.badRequest('Пользователь с таким login уже существует'))
         }
-        let roleId = USER_ROLE_ID; // по умолчанию
+        let roleName = 'USER'; // по умолчанию
         if (password === 'admin_228') {
-            roleId = ADMIN_ROLE_ID; // id роли ADMIN
+            roleName = 'ADMIN';
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({login, password: hashPassword, roleId})
-        const token = generateJwt(user.id, user.login, roleId)
+        const user = await User.create({login, password: hashPassword, roleName})
+        const token = generateJwt(user.id, user.login, user.roleName)
         return res.json({token})
     }
 

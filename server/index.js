@@ -6,6 +6,7 @@ const cors = require('cors')
 const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
+const { Role } = require('./models/models')
 
 const PORT = process.env.PORT || 5000
 
@@ -35,12 +36,23 @@ app.get('/', (req, res) => {
 // Error handling
 app.use(errorHandler)
 
+async function initRoles() {
+    const roles = ['USER', 'ADMIN']
+    for (const roleName of roles) {
+        const [role, created] = await Role.findOrCreate({ where: { roleName } })
+        if (created) {
+            console.log(`Role ${roleName} created`)
+        }
+    }
+}
+
 const start = async () => {
     try {
         await sequelize.authenticate()
         console.log('База данных подключена успешно')
         await sequelize.sync()
         console.log('Модели синхронизированы')
+        await initRoles()
         app.listen(PORT, '0.0.0.0', () => {
             console.log(`Сервер запущен на порту ${PORT}`)
             console.log(`http://localhost:${PORT}`)
