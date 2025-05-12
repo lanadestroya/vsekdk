@@ -107,14 +107,17 @@ async function loadEvents() {
         const eventsContainer = document.getElementById('events-container');
         eventsContainer.innerHTML = events.map(event => `
             <div class="event-item">
+                <div class="event-image">
+                    <img src="${event.pic}" alt="${event.title}" style="max-width: 200px; max-height: 200px;">
+                </div>
                 <div class="event-info">
                     <h4>${event.title}</h4>
                     <p>Дата: ${new Date(event.date).toLocaleString()}</p>
                     <p>Цена: ${event.price} руб.</p>
                 </div>
                 <div class="event-actions">
-                    <button onclick="editEvent('${event._id}')" class="edit-button">Редактировать</button>
-                    <button onclick="deleteEvent('${event._id}')" class="delete-button">Удалить</button>
+                    <button onclick="editEvent('${event.id}')" class="edit-button">Редактировать</button>
+                    <button onclick="deleteEvent('${event.id}')" class="delete-button">Удалить</button>
                 </div>
             </div>
         `).join('');
