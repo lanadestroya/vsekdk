@@ -1,7 +1,7 @@
 // Функция для получения всех событий
 async function getEvents() {
     try {
-        const response = await fetch('/api/event');
+        const response = await fetch('https://vsekdk.onrender.com/api/event');
         if (!response.ok) {
             throw new Error('Ошибка при получении событий');
         }
@@ -27,7 +27,7 @@ async function displayEvents() {
 
     eventsContainer.innerHTML = events.map(event => `
         <div class="event-card">
-            <img src="/uploads/${event.pic}" alt="${event.title}" class="event-image">
+            <img src="${event.pic}" alt="${event.title}" class="event-image">
             <div class="event-info">
                 <h3 class="event-title">${event.title}</h3>
                 <p class="event-date">${new Date(event.date).toLocaleDateString()}</p>
@@ -102,7 +102,7 @@ function setupCreateEventForm() {
         formData.append('text', document.getElementById('event-description').value);
         formData.append('image', document.getElementById('event-image').files[0]);
         try {
-            const response = await fetch('/api/event', {
+            const response = await fetch('https://vsekdk.onrender.com/api/event', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`

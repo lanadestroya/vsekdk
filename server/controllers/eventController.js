@@ -23,31 +23,31 @@ class EventController {
 
     async create(req, res) {
         try {
-            const { name, description, date, price, image } = req.body;
+            const { title, text, date, price, pic } = req.body;
             
             // Проверяем наличие всех необходимых полей
-            if (!name || !description || !date || !price || !image) {
+            if (!title || !text || !date || !price || !pic) {
                 return res.status(400).json({ 
                     message: 'Необходимо заполнить все поля',
-                    received: { name, description, date, price, image: image ? 'present' : 'missing' }
+                    received: { title, text, date, price, pic: pic ? 'present' : 'missing' }
                 });
             }
-
-            // Проверяем, что image это валидный Base64
-            if (!image.startsWith('data:image/')) {
+    
+            // Проверяем, что pic это валидный Base64
+            if (!pic.startsWith('data:image/')) {
                 return res.status(400).json({ 
                     message: 'Неверный формат изображения. Ожидается Base64'
                 });
             }
-
+    
             const newEvent = await Event.create({
-                name,
-                description,
+                title,
+                text,
                 date,
                 price: parseInt(price, 10),
-                image
+                pic
             });
-
+    
             res.status(201).json(newEvent);
         } catch (error) {
             console.error('Ошибка при создании события:', error);
@@ -60,23 +60,23 @@ class EventController {
 
     async update(req, res) {
         try {
-            const { name, description, date, price, image } = req.body;
-            const updateData = { name, description, date, price };
-
-            if (image) {
-                if (!image.startsWith('data:image/')) {
+            const { title, text, date, price, pic } = req.body;
+            const updateData = { title, text, date, price };
+    
+            if (pic) {
+                if (!pic.startsWith('data:image/')) {
                     return res.status(400).json({ 
                         message: 'Неверный формат изображения. Ожидается Base64'
                     });
                 }
-                updateData.image = image;
+                updateData.pic = pic;
             }
-
+    
             const event = await Event.findByPk(req.params.id);
             if (!event) {
                 return res.status(404).json({ message: 'Event not found' });
             }
-
+    
             await event.update(updateData);
             res.json(event);
         } catch (error) {
