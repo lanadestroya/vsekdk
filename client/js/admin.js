@@ -52,33 +52,49 @@ document.addEventListener('DOMContentLoaded', async () => {
     createEventForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('title', document.getElementById('title').value);
-        formData.append('date', document.getElementById('date').value);
-        formData.append('price', document.getElementById('price').value);
-        formData.append('description', document.getElementById('description').value);
-        formData.append('image', document.getElementById('image').files[0]);
-
-        try {
-            const response = await fetch('/api/event', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-                body: formData
-            });
-
-            if (!response.ok) {
-                throw new Error('Не удалось создать мероприятие');
-            }
-
-            alert('Мероприятие успешно создано');
-            eventForm.style.display = 'none';
-            createEventForm.reset();
-            loadEvents(); // Перезагружаем список мероприятий
-        } catch (error) {
-            alert(error.message);
+        const imageFile = document.getElementById('image').files[0];
+        if (!imageFile) {
+            alert('Пожалуйста, выберите изображение');
+            return;
         }
+
+        // Конвертируем изображение в Base64
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const base64Image = e.target.result;
+
+            const eventData = {
+                title: document.getElementById('title').value,
+                date: document.getElementById('date').value,
+                price: document.getElementById('price').value,
+                text: document.getElementById('description').value,
+                pic: base64Image
+            };
+
+            try {
+                const response = await fetch('/api/event', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(eventData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Не удалось создать мероприятие');
+                }
+
+                alert('Мероприятие успешно создано');
+                eventForm.style.display = 'none';
+                createEventForm.reset();
+                loadEvents(); // Перезагружаем список мероприятий
+            } catch (error) {
+                alert(error.message);
+            }
+        };
+
+        reader.readAsDataURL(imageFile);
     });
 });
 

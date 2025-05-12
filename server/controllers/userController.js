@@ -17,14 +17,14 @@ class UserController {
             const {login, password} = req.body
             console.log('Registration attempt:', { login, password })
             
-            if (!login || !password) {
-                return next(ApiError.badRequest('Некорректный email или password'))
-            }
+        if (!login || !password) {
+            return next(ApiError.badRequest('Некорректный email или password'))
+        }
             
-            const candidate = await User.findOne({where: {login}})
-            if (candidate) {
-                return next(ApiError.badRequest('Пользователь с таким login уже существует'))
-            }
+        const candidate = await User.findOne({where: {login}})
+        if (candidate) {
+            return next(ApiError.badRequest('Пользователь с таким login уже существует'))
+        }
             
             // Получаем все роли из базы
             const userRole = await Role.findOne({ where: { name: 'USER' } });
@@ -45,7 +45,7 @@ class UserController {
                 console.log('Selected USER role with id:', selectedRole.id);
             }
 
-            const hashPassword = await bcrypt.hash(password, 5)
+        const hashPassword = await bcrypt.hash(password, 5)
             console.log('Password hashed')
             
             // Создаем пользователя с выбранным roleId
@@ -62,7 +62,7 @@ class UserController {
             })
             
             const token = generateJwt(user.id, user.login, user.roleId)
-            return res.json({token})
+        return res.json({token})
         } catch (error) {
             console.error('Registration error:', error)
             return next(ApiError.internal('Ошибка при регистрации: ' + error.message))

@@ -37,7 +37,7 @@ const Event = sequelize.define("event", {
     date: { type: DataTypes.DATE, allowNull: false },
     title: { type: DataTypes.STRING, allowNull: false },
     text: { type: DataTypes.TEXT, allowNull: false },
-    pic: { type: DataTypes.STRING, allowNull: false },
+    pic: { type: DataTypes.TEXT('long'), allowNull: false },
     price: { type: DataTypes.INTEGER, allowNull: false }
 });
 
