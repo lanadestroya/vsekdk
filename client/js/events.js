@@ -92,35 +92,48 @@ function setupCreateEventForm() {
             alert('Необходима авторизация администратора');
             return;
         }
-        const formData = new FormData();
-        formData.append('title', document.getElementById('event-title').value);
-        // Объединяем дату и время в ISO-строку
-        const date = document.getElementById('event-date').value;
-        const time = document.getElementById('event-time').value;
-        formData.append('date', date + 'T' + time);
-        formData.append('price', document.getElementById('event-price').value);
-        formData.append('text', document.getElementById('event-description').value);
-        formData.append('image', document.getElementById('event-image').files[0]);
-        try {
-            const response = await fetch('https://vsekdk.onrender.com/api/event', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-                body: formData
-            });
-            if (!response.ok) {
-                const err = await response.json();
-                throw new Error(err.message || 'Ошибка при создании события');
-            }
-            // Закрываем модалку, очищаем форму, обновляем афишу
-            document.getElementById('create-event-modal').style.display = 'none';
-            form.reset();
-            await displayEvents();
-            alert('Событие успешно создано!');
-        } catch (error) {
-            alert(error.message);
+
+        const imageFile = document.getElementById('event-image').files[0];
+        if (!imageFile) {
+            alert('Пожалуйста, выберите изображение');
+            return;
         }
+
+        // Конвертируем изображение в Base64
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const base64Image = e.target.result;
+
+            const eventData = {
+                title: document.getElementById('event-title').value,
+                date: document.getElementById('event-date').value + 'T' + document.getElementById('event-time').value,
+                price: document.getElementById('event-price').value,
+                text: document.getElementById('event-description').value,
+                pic: base64Image
+            };
+
+            try {
+                const response = await fetch('https://vsekdk.onrender.com/api/event', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(eventData)
+                });
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.message || 'Ошибка при создании события');
+                }
+                document.getElementById('create-event-modal').style.display = 'none';
+                form.reset();
+                await displayEvents();
+                alert('Событие успешно создано!');
+            } catch (error) {
+                alert(error.message);
+            }
+        };
+        reader.readAsDataURL(imageFile);
     };
 }
 
