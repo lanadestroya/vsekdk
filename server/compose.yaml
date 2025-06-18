@@ -1,0 +1,15 @@
+services:
+  api:
+    container_name: api_container
+    build: .
+    ports:
+      - "53006:5003"
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+    working_dir: /app
+volumes:
+  redis-data:
+
+
+
