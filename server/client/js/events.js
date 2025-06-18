@@ -1,7 +1,7 @@
 // Функция для получения всех событий
 async function getEvents() {
     try {
-        const response = await fetch('https://vsekdk.onrender.com/api/event');
+        const response = await fetch('/api/event');
         if (!response.ok) {
             throw new Error('Ошибка при получении событий');
         }
@@ -113,7 +113,7 @@ function setupCreateEventForm() {
             };
 
             try {
-                const response = await fetch('https://vsekdk.onrender.com/api/event', {
+                const response = await fetch('/api/event', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,
