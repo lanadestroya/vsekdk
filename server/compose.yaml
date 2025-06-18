@@ -1,15 +1,13 @@
 services:
-  api:
-    container_name: api_container
+  app:
+    container_name: app_container
     build: .
     ports:
       - "53006:5003"
     restart: unless-stopped
     volumes:
-      - ./:/app
+      - ./uploads:/app/uploads
     working_dir: /app
-volumes:
-  redis-data:
 
 
 
