@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: app_container
+    container_name: vsekdk_app_container 
     build: .
     ports:
       - "53006:5003"
