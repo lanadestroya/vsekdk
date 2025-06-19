@@ -224,11 +224,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         const token = localStorage.getItem('token');
         if (token) {
             try {
+                const createEventBtn = document.getElementById('admin-create-event-block')
                 const res = await fetch('/api/user', { headers: { Authorization: 'Bearer ' + token } });
                 const user = await res.json();
-                if (user.role && user.role.name) {
+                if (user.role) {
                     localStorage.setItem('userRole', user.role.name);
+                    createEventBtn.style.display = 'block'
                 }
+
             } catch (e) {
                 // Не удалось получить роль, ничего не делаем
             }
