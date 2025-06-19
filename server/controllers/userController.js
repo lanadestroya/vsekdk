@@ -51,6 +51,7 @@ class UserController {
             // Создаем пользователя с выбранным roleId
             const user = await User.create({
                 login, 
+                name: name,
                 password: hashPassword, 
                 roleId: selectedRole.id  // Используем id выбранной роли
             })
