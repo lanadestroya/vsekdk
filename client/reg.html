@@ -23,13 +23,20 @@
           <form id="registerForm">
             <div class="input--inner">
               <input
+                type="text"
+                id="name"
+                placeholder="Введите имя"
+                required
+              />
+            </div>
+            <div class="input--inner">
+              <input
                 type="email"
                 id="email"
                 placeholder="Введите email"
                 required
               />
             </div>
-
             <div class="input--inner">
               <input
                 type="password"
@@ -42,18 +49,13 @@
               <input type="submit" value="регистрация" class="btn_open" />
             </div>
           </form>
+          <p class="switch-auth">
+            Уже есть аккаунт? <a href="auth.html">Войти</a>
+          </p>
           <p>
             Нажимая «Регистрация» вы соглашаетесь с Условиями использования
             сайта и Политикой обработки персональных данных.
           </p>
-        </div>
-        <div class="wrapper_poster--6">
-          <h1>Регистрация прошла успешно!</h1>
-          <form action="234">
-            <div class="button--inner">
-              <input type="submit" value="хорошо" class="btn_close" />
-            </div>
-          </form>
         </div>
       </section>
     </div>

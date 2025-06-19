@@ -30,7 +30,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const userData = await userResponse.json();
-        document.getElementById('user-email').textContent = userData.email;
+        // Показываем имя пользователя
+        const userInfoBlock = document.querySelector('.user-info');
+        if (userInfoBlock) {
+            userInfoBlock.innerHTML = `<p><strong>Имя:</strong> <span id="user-name">${userData.name || ''}</span>`;
+        }
 
         // Загрузка билетов пользователя
         const ticketsResponse = await fetch('/api/ticket/user', {

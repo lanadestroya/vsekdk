@@ -14,7 +14,7 @@ const generateJwt = (id, login, roleId) => {
 class UserController {
     async registration(req, res, next) {    
         try {
-            const {login, password} = req.body
+            const {login, password, name} = req.body
             console.log('Registration attempt:', { login, password })
             
         if (!login || !password) {
@@ -52,7 +52,8 @@ class UserController {
             const user = await User.create({
                 login, 
                 password: hashPassword, 
-                roleId: selectedRole.id  // Используем id выбранной роли
+                roleId: selectedRole.id,
+                name
             })
             
             console.log('User created:', { 
@@ -89,8 +90,23 @@ class UserController {
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.login, req.user.roleId)
-        return res.json({token})
+        try {
+            const user = await User.findByPk(req.user.id, {
+                include: [Role]
+            });
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            return res.json({
+                id: user.id,
+                login: user.login,
+                roleId: user.roleId,
+                name: user.name
+            });
+        } catch (error) {
+            console.error('Check error:', error);
+            return next(ApiError.internal('Ошибка при проверке пользователя'));
+        }
     }
 
     async get(req, res) {
@@ -104,7 +120,9 @@ class UserController {
             res.json({
                 id: user.id,
                 login: user.login,
-                roleId: user.roleId
+                roleId: user.roleId,
+                name: user.name,
+                role: user.role ? { name: user.role.name } : null
             });
         } catch (err) {
             res.status(500).json({ error: err.message });

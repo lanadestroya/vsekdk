@@ -7,6 +7,7 @@ const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
 const { Role } = require('./models/models')
+const fileUpload = require('express-fileupload')
 
 const PORT = process.env.PORT || 5000
 
@@ -20,6 +21,13 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
 app.use(express.json({ limit: '10mb' }))
+app.use(fileUpload({
+    createParentPath: true,
+    limits: {
+        fileSize: 10 * 1024 * 1024 // 10MB
+    },
+    abortOnLimit: true
+}))
 
 // Статические файлы
 app.use(express.static(path.join(__dirname, '../client')))
