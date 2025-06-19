@@ -45,8 +45,8 @@ function createEventCard(event) {
     });
     
     // Проверяем роль пользователя
-    const userRole = localStorage.getItem('userRole');
-    const isAdmin = userRole && userRole.trim().toUpperCase() === 'ADMIN';
+    const userRole = localStorage.getItem('userRoleId');
+    const isAdmin = userRole === '2';
     
     card.innerHTML = `
         <div class="event-image">
@@ -220,7 +220,7 @@ async function loadEvents() {
 // Новый асинхронный инициализатор
 document.addEventListener('DOMContentLoaded', async () => {
     // Проверяем, есть ли роль в localStorage
-    if (!localStorage.getItem('userRole')) {
+    if (!localStorage.getItem('userRoleId')) {
         const token = localStorage.getItem('token');
         if (token) {
             try {
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const res = await fetch('/api/user', { headers: { Authorization: 'Bearer ' + token } });
                 const user = await res.json();
                 if (user.role) {
-                    localStorage.setItem('userRole', user.role.name);
+                    localStorage.setItem('userRoleId', user.role.id);
                     createEventBtn.style.display = 'block'
                 }
 

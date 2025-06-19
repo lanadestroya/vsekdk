@@ -36,6 +36,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             // Сохраняем токен
             if (data.token) {
                 localStorage.setItem("token", data.token);
+                localStorage.setItem('userRoleId', data.roleId)
             }
             submitBtn.value = 'Успешно!';
             errorBlock.style.color = 'green';

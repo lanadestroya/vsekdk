@@ -29,8 +29,8 @@ async function displayEvents() {
     }
 
     // Проверяем роль пользователя
-    const userRole = localStorage.getItem('userRole');
-    const isAdmin = userRole === 'ADMIN';
+    const userRole = localStorage.getItem('userRoleId');
+    const isAdmin = userRole === '2';
 
     eventsContainer.innerHTML = events.map(event => {
         const eventDate = new Date(event.date);
@@ -392,6 +392,7 @@ function setupCreateEventForm() {
 // Обработчик для формы редактирования события
 document.addEventListener('DOMContentLoaded', () => {
     const editEventForm = document.getElementById('edit-event-form');
+    console.log(editEventForm)
     if (editEventForm) {
         editEventForm.addEventListener('submit', async (e) => {
             e.preventDefault();

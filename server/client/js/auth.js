@@ -17,6 +17,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
        
         const user = await getUser(token)
+        console.log('---- user ----', user)
         const userMailEl = document.querySelector('#user-mail');
         if (userMailEl) {
             userMailEl.innerHTML = user.login
@@ -25,7 +26,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         
         // Сохраняем роль пользователя
         if (user.role && user.role.name) {
-            localStorage.setItem('userRole', user.role.name);
+            localStorage.setItem('userRoleId', user.role['id']);
         }
     } else {
         if (window.location.pathname === '/client/lc.html') {
