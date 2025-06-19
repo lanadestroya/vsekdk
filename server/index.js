@@ -30,7 +30,7 @@ app.use(fileUpload({
 }))
 
 // Статические файлы
-app.use(express.static(path.join(__dirname, '../client')))
+app.use(express.static(path.join(__dirname, './client')))
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 // API routes
@@ -38,7 +38,7 @@ app.use('/api', router)
 
 // Обработка всех остальных запросов
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client', 'index.html'))
+    res.sendFile(path.join(__dirname, './client', 'index.html'))
 })
 
 // Error handling
