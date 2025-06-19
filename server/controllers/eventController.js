@@ -23,29 +23,45 @@ class EventController {
 
     async create(req, res) {
         try {
-            const { title, text, date, price, pic } = req.body;
+            const { title, text, date, price } = req.body;
             
             // Проверяем наличие всех необходимых полей
-            if (!title || !text || !date || !price || !pic) {
+            if (!title || !text || !date || !price) {
                 return res.status(400).json({ 
                     message: 'Необходимо заполнить все поля',
-                    received: { title, text, date, price, pic: pic ? 'present' : 'missing' }
+                    received: { title, text, date, price }
                 });
             }
     
-            // Проверяем, что pic это валидный Base64
-            if (!pic.startsWith('data:image/')) {
+            // Проверяем наличие файла изображения
+            if (!req.files || !req.files.image) {
                 return res.status(400).json({ 
-                    message: 'Неверный формат изображения. Ожидается Base64'
+                    message: 'Необходимо загрузить изображение'
                 });
             }
+    
+            const imageFile = req.files.image;
+            
+            // Проверяем тип файла
+            if (!imageFile.mimetype.startsWith('image/')) {
+                return res.status(400).json({ 
+                    message: 'Загруженный файл не является изображением'
+                });
+            }
+    
+            // Генерируем уникальное имя файла
+            const fileName = `${Date.now()}_${imageFile.name}`;
+            const uploadPath = `./uploads/${fileName}`;
+    
+            // Сохраняем файл
+            await imageFile.mv(uploadPath);
     
             const newEvent = await Event.create({
                 title,
                 text,
                 date,
                 price: parseInt(price, 10),
-                pic
+                pic: fileName // Сохраняем только имя файла
             });
     
             res.status(201).json(newEvent);
@@ -60,16 +76,27 @@ class EventController {
 
     async update(req, res) {
         try {
-            const { title, text, date, price, pic } = req.body;
+            const { title, text, date, price } = req.body;
             const updateData = { title, text, date, price };
     
-            if (pic) {
-                if (!pic.startsWith('data:image/')) {
+            // Если загружен новый файл
+            if (req.files && req.files.image) {
+                const imageFile = req.files.image;
+                
+                // Проверяем тип файла
+                if (!imageFile.mimetype.startsWith('image/')) {
                     return res.status(400).json({ 
-                        message: 'Неверный формат изображения. Ожидается Base64'
+                        message: 'Загруженный файл не является изображением'
                     });
                 }
-                updateData.pic = pic;
+                
+                // Генерируем уникальное имя файла
+                const fileName = `${Date.now()}_${imageFile.name}`;
+                const uploadPath = `./uploads/${fileName}`;
+                
+                // Сохраняем файл
+                await imageFile.mv(uploadPath);
+                updateData.pic = fileName;
             }
     
             const event = await Event.findByPk(req.params.id);

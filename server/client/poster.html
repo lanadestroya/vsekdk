@@ -80,14 +80,16 @@
         <div class="events-container">
           <!-- Здесь будут отображаться карточки событий -->
         </div>
+        
+        <!-- Кнопка создания события для администратора -->
+        <div id="admin-create-event-block" style="display: none">
+          <button id="open-create-event-modal" class="admin-create-btn">
+            Создать событие
+          </button>
+        </div>
+      
       </div>
     </section>
-
-    <div id="admin-create-event-block" style="display: none">
-      <button id="open-create-event-modal" class="admin-create-btn">
-        Создать событие
-      </button>
-    </div>
 
     <!-- Модальное окно для создания события -->
     <div id="create-event-modal" class="modal" style="display: none">
@@ -96,33 +98,34 @@
         <h2>Создать событие</h2>
         <form id="create-event-form" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="event-title">Название</label>
-            <input type="text" id="event-title" name="title" required />
+            <label for="event-title">Название события</label>
+            <input type="text" id="event-title" name="title" required placeholder="Введите название события" />
           </div>
           <div class="form-group">
-            <label for="event-date">Дата</label>
+            <label for="event-date">Дата проведения</label>
             <input type="date" id="event-date" name="date" required />
           </div>
           <div class="form-group">
-            <label for="event-time">Время</label>
+            <label for="event-time">Время проведения</label>
             <input type="time" id="event-time" name="time" required />
           </div>
           <div class="form-group">
-            <label for="event-price">Цена</label>
+            <label for="event-price">Стоимость билета (руб.)</label>
             <input
               type="number"
               id="event-price"
               name="price"
               min="0"
               required
+              placeholder="0"
             />
           </div>
           <div class="form-group">
-            <label for="event-description">Описание</label>
-            <textarea id="event-description" name="text" required></textarea>
+            <label for="event-description">Описание события</label>
+            <textarea id="event-description" name="text" required placeholder="Опишите событие подробно..."></textarea>
           </div>
           <div class="form-group">
-            <label for="event-image">Изображение</label>
+            <label for="event-image">Изображение события</label>
             <input
               type="file"
               id="event-image"
@@ -131,7 +134,58 @@
               required
             />
           </div>
-          <button type="submit" class="admin-create-btn">Создать</button>
+          <button type="submit" class="admin-create-btn">Создать событие</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Модальное окно для редактирования события -->
+    <div id="edit-event-modal" class="edit-modal">
+      <div class="edit-modal-content">
+        <span class="close-edit-modal">&times;</span>
+        <h2>Редактировать событие</h2>
+        <form id="edit-event-form" enctype="multipart/form-data">
+          <input type="hidden" id="edit-event-id" name="id" />
+          <div class="edit-form-group">
+            <label for="edit-event-title">Название события</label>
+            <input type="text" id="edit-event-title" name="title" required placeholder="Введите название события" />
+          </div>
+          <div class="edit-form-row">
+            <div class="edit-form-group">
+              <label for="edit-event-date">Дата проведения</label>
+              <input type="date" id="edit-event-date" name="date" required />
+            </div>
+            <div class="edit-form-group">
+              <label for="edit-event-time">Время проведения</label>
+              <input type="time" id="edit-event-time" name="time" required />
+            </div>
+          </div>
+          <div class="edit-form-group">
+            <label for="edit-event-price">Стоимость билета (руб.)</label>
+            <input
+              type="number"
+              id="edit-event-price"
+              name="price"
+              min="0"
+              required
+              placeholder="0"
+            />
+          </div>
+          <div class="edit-form-group">
+            <label for="edit-event-text">Описание события</label>
+            <textarea id="edit-event-text" name="text" required placeholder="Опишите событие подробно..."></textarea>
+          </div>
+          <div class="edit-form-group">
+            <label for="edit-event-image">Новое изображение (необязательно)</label>
+            <input
+              type="file"
+              id="edit-event-image"
+              name="image"
+              accept="image/*"
+            />
+            <small>Оставьте пустым, чтобы сохранить текущее изображение</small>
+          </div>
+          <button type="submit" class="edit-submit-btn">Сохранить изменения</button>
         </form>
       </div>
     </div>
@@ -193,6 +247,7 @@
     </footer>
 
     <script src="js/auth.js"></script>
+    <script src="js/poster.js"></script>
     <script src="js/events.js"></script>
   </body>
 </html>

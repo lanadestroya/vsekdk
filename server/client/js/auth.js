@@ -22,6 +22,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             userMailEl.innerHTML = user.login
             userMailEl.setAttribute('href', 'mailto:' +user.login)
         }
+        
+        // Сохраняем роль пользователя
+        if (user.role && user.role.name) {
+            localStorage.setItem('userRole', user.role.name);
+        }
     } else {
         if (window.location.pathname === '/client/lc.html') {
             window.location.pathname = '/client/index.html'
