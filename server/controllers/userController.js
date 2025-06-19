@@ -105,7 +105,8 @@ class UserController {
             res.json({
                 id: user.id,
                 login: user.login,
-                roleId: user.roleId
+                roleId: user.roleId,
+		name: user.name
             });
         } catch (err) {
             res.status(500).json({ error: err.message });
